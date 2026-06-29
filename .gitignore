@@ -1,0 +1,33 @@
+# macOS
+.DS_Store
+
+# Eclipse
+.metadata/
+
+# VS Code
+.vscode/
+
+# IntelliJ
+.idea/
+*.iml
+
+# Maven
+target/
+
+# Gradle
+build/
+
+# Logs
+*.log
+
+# Environment
+.env
+
+# Node
+node_modules/
+
+# Java
+*.class
+
+JavaPractice/
+docs/
