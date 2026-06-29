@@ -1,0 +1,53 @@
+server:
+  port: 8089
+
+spring:
+  application:
+    name: notification-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/notification_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
+    username: root
+    password: admin123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  # RabbitMQ Configuration (matches Docker container)
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+  # Email Configuration (use your Gmail)
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: quickbite.test.2026@gmail.com
+    password: dpwg revm drgn vyue
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+eureka:
+  instance:
+    prefer-ip-address: false
+    hostname: localhost
+    instance-id: ${spring.application.name}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+frontend:
+  url: http://localhost:4200
+
+logging:
+  level:
+    com.quickbite.notification: DEBUG
+  file:
+    name: logs/notification-service.log
