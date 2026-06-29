@@ -1,0 +1,47 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: restaurant-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/restaurant_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
+    username: root
+    password: admin123   # Change to your actual password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+eureka:
+  instance:
+    prefer-ip-address: false
+    hostname: localhost
+    instance-id: ${spring.application.name}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics
+
+info:
+  app:
+    name: Restaurant Service
+    version: 1.0.0
+    description: Manage restaurant profiles, approval, nearby search
+
+logging:
+  level:
+    com.quickbite.restaurant: DEBUG
+  file:
+    name: logs/restaurant-service.log
